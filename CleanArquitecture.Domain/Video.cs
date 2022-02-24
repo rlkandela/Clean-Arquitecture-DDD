@@ -9,5 +9,12 @@ namespace CleanArquitecture.Domain
         public int StreamerId { get; set; }
 
         public virtual Streamer? Streamer { get; set; }
+
+        public virtual ICollection<Actor> Actores { get; set; }
+
+        public Video()
+        {
+            Actores = new HashSet<Actor>();
+        }
     }
 }
