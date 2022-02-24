@@ -3,6 +3,7 @@ using CleanArquitecture.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArquitecture.Data.Migrations
 {
     [DbContext(typeof(StreamerDbContext))]
-    partial class StreamerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220224081853_AgregarTablasEntidadesRelaciones")]
+    partial class AgregarTablasEntidadesRelaciones
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace CleanArquitecture.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Actores");
+                    b.ToTable("Actor");
                 });
 
             modelBuilder.Entity("CleanArquitecture.Domain.Director", b =>
@@ -62,7 +64,7 @@ namespace CleanArquitecture.Data.Migrations
                     b.HasIndex("VideoId")
                         .IsUnique();
 
-                    b.ToTable("Directores");
+                    b.ToTable("Director");
                 });
 
             modelBuilder.Entity("CleanArquitecture.Domain.Streamer", b =>
@@ -117,7 +119,7 @@ namespace CleanArquitecture.Data.Migrations
 
                     b.HasIndex("VideoId");
 
-                    b.ToTable("VideosActores");
+                    b.ToTable("VideoActor");
                 });
 
             modelBuilder.Entity("CleanArquitecture.Domain.Director", b =>
@@ -125,7 +127,7 @@ namespace CleanArquitecture.Data.Migrations
                     b.HasOne("CleanArquitecture.Domain.Video", "Video")
                         .WithOne("Director")
                         .HasForeignKey("CleanArquitecture.Domain.Director", "VideoId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Video");
