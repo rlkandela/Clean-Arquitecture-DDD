@@ -5,13 +5,13 @@
         public int Id { get; set; }
 
         #region Creation Data
-        public DateTime? DateCreated { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         public string? CreatedBy { get; set; }
         #endregion
 
         #region Modification Data
-        public DateTime? DateModified { get; set; }
+        public DateTime? ModifiedDate { get; set; }
 
         public string? ModifiedBy { get; set; }
         #endregion
