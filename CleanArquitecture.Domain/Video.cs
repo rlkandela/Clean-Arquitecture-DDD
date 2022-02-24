@@ -12,6 +12,8 @@ namespace CleanArquitecture.Domain
 
         public virtual ICollection<Actor> Actores { get; set; }
 
+        public virtual Director? Director { get; set; }
+
         public Video()
         {
             Actores = new HashSet<Actor>();

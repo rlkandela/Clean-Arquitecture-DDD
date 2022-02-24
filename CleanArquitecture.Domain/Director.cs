@@ -8,6 +8,8 @@ namespace CleanArquitecture.Domain
 
         public string? Apellido { get; set; }
 
+        public int VideoId { get; set; }
 
+        public virtual Video? Video { get; set; }
     }
 }
