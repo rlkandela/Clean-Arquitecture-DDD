@@ -16,7 +16,12 @@
             return !(EqualOperator(left, right));
         }
 
-        protected abstract IEnumerable<object> GetEqualityComponents();
+        private IEnumerable<object> GetEqualityComponents()
+        {
+            var properties = GetType().GetProperties()
+                .Where(prop => Attribute.IsDefined(prop, typeof(VOEqualityComponent)));
+            return properties;
+        }
 
         public override bool Equals(object obj)
         {
