@@ -10,4 +10,10 @@
     <ProjectReference Include="..\CleanArquitecture.Domain\CleanArquitecture.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Futures\" />
+    <Folder Include="Behaviours\" />
+  </ItemGroup>
+
 </Project>
