@@ -1,6 +1,8 @@
-﻿namespace CleanArquitecture.Domain
+﻿using CleanArquitecture.Domain.Common;
+
+namespace CleanArquitecture.Domain
 {
-    public class VideoActor
+    public class VideoActor : BaseDomainModel
     {
         public int VideoId { get; set; }
 
