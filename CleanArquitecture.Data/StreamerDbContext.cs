@@ -27,10 +27,23 @@ namespace CleanArquitecture.Data
                 .UsingEntity<VideoActor>(
                     m => m.HasKey(e => new { e.ActorId, e.VideoId })
                 );
+
+            modelBuilder.Entity<Director>()
+                .HasOne(m => m.Video)
+                .WithOne(m => m.Director)
+                .HasForeignKey<Director>(m => m.VideoId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<Streamer>? Streamers { get; set; }
 
         public DbSet<Video>? Videos { get; set; }
+
+        public DbSet<VideoActor>? VideosActores { get; set; }
+
+        public DbSet<Actor>? Actores { get; set; }
+
+        public DbSet<Director>? Directores { get; set; }
     }
 }
