@@ -1,9 +1,9 @@
-﻿namespace CleanArquitecture.Domain
-{
-    public class Video
-    {
-        public int Id { get; set; }
+﻿using CleanArquitecture.Domain.Common;
 
+namespace CleanArquitecture.Domain
+{
+    public class Video : BaseDomainModel
+    {
         public string? Nombre { get; set; }
 
         public int StreamerId { get; set; }
