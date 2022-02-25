@@ -1,6 +1,6 @@
 ﻿namespace CleanArquitecture.Application.Features.Videos.Queries.GetVideosList
 {
-    internal class VideosVM
+    public class VideosVM
     {
         public string? Nombre { get; set; }
 
