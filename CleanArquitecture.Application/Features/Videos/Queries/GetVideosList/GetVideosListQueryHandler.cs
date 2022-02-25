@@ -19,8 +19,7 @@ namespace CleanArquitecture.Application.Features.Videos.Queries.GetVideosList
         {
             var videoList = await _videoRepository.GetVideoByUsername(request.Username);
 
-            //return _mapper.Map<IEnumerable<VideosVM>>(videoList);
-            return new List<VideosVM>();
+            return _mapper.Map<IEnumerable<VideosVM>>(videoList);
         }
     }
 }
