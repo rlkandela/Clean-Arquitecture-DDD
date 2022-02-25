@@ -2,9 +2,9 @@
 
 namespace CleanArquitecture.Application.Features.Streamers.Commands
 {
-    public class StreamerCommandValidator : AbstractValidator<StreamerCommand>
+    public class CreateStreamerCommandValidator : AbstractValidator<CreateStreamerCommand>
     {
-        public StreamerCommandValidator()
+        public CreateStreamerCommandValidator()
         {
             RuleFor(p => p.Nombre)
                 .NotEmpty().WithMessage("{Nombre} no puede estar en blanco")

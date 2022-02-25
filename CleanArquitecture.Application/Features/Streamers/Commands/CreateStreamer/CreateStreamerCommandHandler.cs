@@ -8,18 +8,18 @@ using Microsoft.Extensions.Logging;
 
 namespace CleanArquitecture.Application.Features.Streamers.Commands
 {
-    public class StreamerCommandHandler : IRequestHandler<StreamerCommand, int>
+    public class CreateStreamerCommandHandler : IRequestHandler<CreateStreamerCommand, int>
     {
         private readonly IStreamerRepository _streamerRepositroy;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
-        private readonly ILogger<StreamerCommandHandler> _logger;
+        private readonly ILogger<CreateStreamerCommandHandler> _logger;
 
-        public StreamerCommandHandler(
+        public CreateStreamerCommandHandler(
             IStreamerRepository streamerRepositroy,
             IMapper mapper,
             IEmailService emailService,
-            ILogger<StreamerCommandHandler> logger
+            ILogger<CreateStreamerCommandHandler> logger
         )
         {
             _streamerRepositroy = streamerRepositroy;
@@ -28,7 +28,7 @@ namespace CleanArquitecture.Application.Features.Streamers.Commands
             _logger = logger;
         }
 
-        public async Task<int> Handle(StreamerCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateStreamerCommand request, CancellationToken cancellationToken)
         {
             var streamer_entity = _mapper.Map<Streamer>(request);
             var new_streamer = await _streamerRepositroy.AddAsync(streamer_entity);
