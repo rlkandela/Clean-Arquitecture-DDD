@@ -30,6 +30,11 @@ namespace CleanArquitecture.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> pred)
+        {
+            return await _context.Set<T>().FirstOrDefaultAsync(pred);
+        }
+
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
