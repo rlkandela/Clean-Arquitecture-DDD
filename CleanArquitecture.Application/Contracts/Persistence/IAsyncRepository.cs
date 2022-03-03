@@ -21,7 +21,10 @@ namespace CleanArquitecture.Application.Contracts.Persistence
             List<Expression<Func<T, object>>>? includes = null,
             bool disableTracking = true);
 
-        Task<T> GetByIdAsync(int id);
+        Task<T?> FirstOrDefaultAsync(
+            Expression<Func<T, bool>> pred);
+
+        Task<T?> GetByIdAsync(int id);
 
         Task<T> AddAsync(T entity);
 
