@@ -1,3 +1,4 @@
+using CleanArquitecture.API.Middleware;
 using CleanArquitecture.Application;
 using CleanArquitecture.Identity;
 using CleanArquitecture.Infrastructure;
@@ -32,6 +33,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthentication();
 
