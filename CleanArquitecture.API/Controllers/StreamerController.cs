@@ -8,7 +8,7 @@ using System.Net;
 namespace CleanArquitecture.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/{controller}")]
+    [Route("api/v1/[controller]")]
     public class StreamerController : ControllerBase
     {
         private readonly IMediator _mediator;
