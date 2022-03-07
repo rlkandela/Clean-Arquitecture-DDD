@@ -9,27 +9,29 @@ namespace CleanArquitecture.Application.Features.Streamers.Commands.UpdateStream
 {
     public class UpdateStreamerCommandHandler : IRequestHandler<UpdateStreamerCommand>
     {
-        private readonly IStreamerRepository _streamerRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILogger<UpdateStreamerCommandHandler> _logger;
 
-        public UpdateStreamerCommandHandler(IStreamerRepository streamerRepository, IMapper mapper, ILogger<UpdateStreamerCommandHandler> logger)
+        public UpdateStreamerCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<UpdateStreamerCommandHandler> logger)
         {
-            _streamerRepository = streamerRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
         }
 
         public async Task<Unit> Handle(UpdateStreamerCommand request, CancellationToken cancellationToken)
         {
-            var streamer_to_update = await _streamerRepository.GetByIdAsync(request.Id);
+            var streamer_to_update = await _unitOfWork.StreamerRepository.GetByIdAsync(request.Id);
             if (streamer_to_update == null)
             {
                 _logger.LogError($"No se encontro el streamer id {request.Id}");
                 throw new NotFoundException(nameof(Streamer), request.Id);
             }
             _mapper.Map(request, streamer_to_update, typeof(UpdateStreamerCommand), typeof(Streamer));
-            await _streamerRepository.UpdateAsync(streamer_to_update);
+            _unitOfWork.StreamerRepository.UpdateEntity(streamer_to_update);
+            var ret = await _unitOfWork.Complete();
+            if (ret <= 0) throw new Exception("No se pudo actualizar el streamer");
             _logger.LogInformation($"La operacion fue exitosa actualizando el streamer {request.Id}");
 
             return Unit.Value;
