@@ -1,19 +1,21 @@
-﻿using CleanArquitecture.Application.Contracts.Persistence;
+﻿using CleanArquitecture.Infrastructure.Persistence;
+using CleanArquitecture.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 
 namespace CleanArquitecture.Application.UnitTests.Mocks
 {
     public static class MockUnitOfWork
     {
-        public static Mock<IUnitOfWork> GetUnitOfWork()
+        public static Mock<UnitOfWork> GetUnitOfWork()
         {
-            var mockUnitOfWork = new Mock<IUnitOfWork>();
+            var options = new DbContextOptionsBuilder<StreamerDbContext>()
+                .UseInMemoryDatabase(databaseName: $"StreamerDbContext-{Guid.NewGuid()}")
+                .Options;
+            var FakeDb = new StreamerDbContext(options);
 
-            var mockVideoRepository = MockVideoRepository.GetVideoRepository();
-            var mockStreamerRepository = MockStreamerRepository.GetStreamerRepository();
-
-            mockUnitOfWork.Setup(uow => uow.VideoRepository).Returns(mockVideoRepository.Object);
-            mockUnitOfWork.Setup(uow => uow.StreamerRepository).Returns(mockStreamerRepository.Object);
+            FakeDb.Database.EnsureDeleted();
+            var mockUnitOfWork = new Mock<UnitOfWork>(FakeDb);
 
             return mockUnitOfWork;
         }

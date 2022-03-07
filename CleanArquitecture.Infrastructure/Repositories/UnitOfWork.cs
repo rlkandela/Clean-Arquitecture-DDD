@@ -14,8 +14,8 @@ namespace CleanArquitecture.Infrastructure.Repositories
 
         public IVideoRepository VideoRepository => _videoRepository;
         public IStreamerRepository StreamerRepository => _streamerRepository;
-
-        public UnitOfWork(StreamerDbContext context)
+        public StreamerDbContext StreamerDbContext => _context;
+        public UnitOfWork(StreamerDbContext context)    
         {
             _context = context;
             _videoRepository = new VideoRepository(_context);
