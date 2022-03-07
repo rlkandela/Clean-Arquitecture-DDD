@@ -6,6 +6,10 @@ namespace CleanArquitecture.Application.Contracts.Persistence
     {
         IAsyncRepository<TEntity>? Repository<TEntity>() where TEntity : BaseDomainModel;
 
+        IVideoRepository VideoRepository { get; }
+
+        IStreamerRepository StreamerRepository { get; }
+
         Task<int> Complete();
     }
 }
