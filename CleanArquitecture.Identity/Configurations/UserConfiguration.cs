@@ -20,7 +20,7 @@ namespace CleanArquitecture.Identity.Configurations
                     Apellidos = "kandela",
                     UserName = "rlkandela",
                     NormalizedUserName = "rlkandela",
-                    PasswordHash = hasher.HashPassword(null, "12345"),
+                    PasswordHash = hasher.HashPassword(new ApplicationUser(), "12345"),
                     EmailConfirmed = true
                 },
                 new ApplicationUser()
@@ -32,7 +32,7 @@ namespace CleanArquitecture.Identity.Configurations
                     Apellidos = "Perez",
                     UserName = "juanperez",
                     NormalizedUserName = "juanperez",
-                    PasswordHash = hasher.HashPassword(null, "abcdef"),
+                    PasswordHash = hasher.HashPassword(new ApplicationUser(), "abcdef"),
                     EmailConfirmed = true
                 }
             );
