@@ -21,4 +21,8 @@
     <ProjectReference Include="..\CleanArquitecture.Application\CleanArquitecture.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Videos\Commands\" />
+  </ItemGroup>
+
 </Project>
