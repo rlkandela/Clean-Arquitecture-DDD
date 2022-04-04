@@ -1,0 +1,2 @@
+CleanArquitecture.API/appsettings.json filter=git-crypt diff=git-crypt
+CleanArquitecture.API/appsettings.Development.json filter=git-crypt diff=git-crypt
