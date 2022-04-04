@@ -9,15 +9,17 @@ namespace CleanArquitecture.Infrastructure.Repositories
     {
         private Hashtable _repositories;
         private readonly StreamerDbContext _context;
-        private IVideoRepository _videoRepository;
-        private IStreamerRepository _streamerRepository;
+        private readonly IVideoRepository _videoRepository;
+        private readonly IStreamerRepository _streamerRepository;
 
-        public IVideoRepository VideoRepository => _videoRepository ??= new VideoRepository(_context);
-        public IStreamerRepository StreamerRepository => _streamerRepository ??= new StreamerRepository(_context);
-
-        public UnitOfWork(StreamerDbContext context)
+        public IVideoRepository VideoRepository => _videoRepository;
+        public IStreamerRepository StreamerRepository => _streamerRepository;
+        public StreamerDbContext StreamerDbContext => _context;
+        public UnitOfWork(StreamerDbContext context)    
         {
             _context = context;
+            _videoRepository = new VideoRepository(_context);
+            _streamerRepository = new StreamerRepository(_context);
             _repositories = new Hashtable();
         }
 

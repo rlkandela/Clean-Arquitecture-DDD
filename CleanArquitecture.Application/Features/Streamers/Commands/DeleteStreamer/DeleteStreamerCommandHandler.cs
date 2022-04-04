@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CleanArquitecture.Application.Features.Streamers.Commands.DeleteStreamer
 {
-    internal class DeleteStreamerCommandHandler : IRequestHandler<DeleteStreamerCommand>
+    public class DeleteStreamerCommandHandler : IRequestHandler<DeleteStreamerCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
